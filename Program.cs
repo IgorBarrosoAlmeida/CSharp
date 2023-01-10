@@ -1,7 +1,2 @@
-using System;
-
-class Program {
-    static void main(string[] args) {
-        Console.WriteLine("Olá mundo");
-    }
-}
+﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
