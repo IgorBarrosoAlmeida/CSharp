@@ -5,8 +5,11 @@ namespace bytebank {
         public static void Main(string[] args) {
             ContaCorrente conta = new ContaCorrente();
 
+            conta.agencia = 15;
             conta.id = "140b";
-            Console.WriteLine(conta.id);
+            conta.saldo = 1000;
+
+            conta.ImprimeDados();
         }
     }
 }
