@@ -4,9 +4,27 @@ namespace bytebank.Contas {
     public class ContaCorrente{
         // Atributos
         public Cliente Titular { get; set;}
-        public String Id { get; set; }
-        public int Agencia { get; set; }
+        public String Id { get; private set; }
+        public int Agencia { get; private set; }
         private double saldo;
+        public static int totalContas { get; private set;}
+
+        // Construtores
+        public ContaCorrente(int agencia, string id) {
+            this.Id = id;
+            this.Agencia = agencia;
+            this.Titular = new Cliente();
+            totalContas++;
+        }
+
+        public ContaCorrente(Cliente titular,int numero_agencia,string id)
+        {
+            this.Titular = titular;
+            this.Agencia = numero_agencia;
+            this.Id = id;
+            this.Titular = new Cliente();
+            totalContas++;
+        }
 
         // Métodos
         public void Depositar(double valor){
