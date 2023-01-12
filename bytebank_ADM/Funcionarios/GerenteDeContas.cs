@@ -1,24 +1,24 @@
 namespace bytebank_ADM.Funcionarios {
-    public class Diretor : Funcionario {
+    public class GerenteDeContas : Funcionario {
         // Construtores
-        public Diretor(string cpf):base(cpf, 5000) { }
+        public GerenteDeContas(string cpf):base(cpf, 4000) { }
 
         // Métodos
         public override double GetBonificacao() {
-            // Retorna a bonificação de 50%
-            return this.Salario * 0.5;
+            // Retorna a bonificação de 25%
+            return this.Salario * 0.25;
         }
 
         public override void ImprimeDados()
         {   
             // Exemplo de utilização do "base."
-            System.Console.WriteLine("Cargo: Diretor");
+            System.Console.WriteLine("Cargo: Gerente de Contas");
             base.ImprimeDados();
         }
 
         public override void AumentarSalario(){
-            // Aumento de 15% do salario
-            this.Salario *= 1.15;
+            // Aumento de 5% do salario
+            this.Salario *= 1.05;
         }
     }
 }
