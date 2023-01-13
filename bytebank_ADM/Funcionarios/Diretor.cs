@@ -1,7 +1,7 @@
 using bytebank_ADM.SistemaInterno;
 
 namespace bytebank_ADM.Funcionarios {
-    public class Diretor : Autenticavel {
+    public class Diretor : funcionarioAutentivavel {
         // Construtores
         public Diretor(string cpf) : base(cpf, 5000) { }
 
@@ -22,9 +22,5 @@ namespace bytebank_ADM.Funcionarios {
             // Aumento de 15% do salario
             this.Salario *= 1.15;
         }
-
-        /*public override bool Autenticar(string senha){
-            return this.Senha == senha;
-        }*/
     }
 }

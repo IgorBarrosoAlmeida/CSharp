@@ -1,7 +1,9 @@
 ﻿using bytebank_ADM.Funcionarios;
 using bytebank_ADM.Utilitario;
 using bytebank_ADM.SistemaInterno;
+using bytebank_ADM.Parceria;
 using System;
+
 /*
 void TesteBonificacao() {
     Funcionario f1 = new Funcionario("123456789", 2000);
@@ -65,8 +67,12 @@ void TestaSistemaInterno(){
     gerente.Senha = "321";
     gerente.Login = "llwqq@gmail.com";
 
+    ParceiroComercial parceiro = new ParceiroComercial("parceiro@gmail.com", "123456");
+    parceiro.Nome = "Carlos Freitas";
+
     sis.Logar(diretor, "ADJAKSD@gmail.com", "123");
     sis.Logar(gerente, "llwqq@gmail.com", "000");
+    sis.Logar(parceiro, "parceiro@gmail.com", "123456");
 }
 
 TestaSistemaInterno();
