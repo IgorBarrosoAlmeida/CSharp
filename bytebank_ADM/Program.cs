@@ -1,37 +1,33 @@
 ﻿using bytebank_ADM.Funcionarios;
 using bytebank_ADM.Utilitario;
+using bytebank_ADM.SistemaInterno;
 using System;
 /*
-namespace bytebank_ADM {
-    class Program {
-        static void Main(string[] args) {
-            Funcionario f1 = new Funcionario("123456789", 2000);
-            Diretor f2 = new Diretor("987654321", 5000);
+void TesteBonificacao() {
+    Funcionario f1 = new Funcionario("123456789", 2000);
+    Diretor f2 = new Diretor("987654321", 5000);
 
-            f1.Nome = "Pedro";
-            // f1.Cpf = "345123";
-            // f1.Salario = 2000;
-            f2.Nome = "Paula";
-            // f2.Cpf = "12312";
-            // f2.Salario = 5000;
+    f1.Nome = "Pedro";
+    // f1.Cpf = "345123";
+    // f1.Salario = 2000;
+    f2.Nome = "Paula";
+    // f2.Cpf = "12312";
+    // f2.Salario = 5000;
 
-            f1.ImprimeDados();
-            f2.ImprimeDados();
+    f1.ImprimeDados();
+    f2.ImprimeDados();
 
-            GerenciadorBonificacao boni = new GerenciadorBonificacao();
+    GerenciadorBonificacao boni = new GerenciadorBonificacao();
 
-            boni.Registrar(f1);
-            boni.Registrar(f2);
+    boni.Registrar(f1);
+    boni.Registrar(f2);
 
-            Console.WriteLine("Bonificação total: " + boni.TotalBonificacao);
-            f1.AumentarSalario();
-            f2.AumentarSalario();
-            Console.WriteLine("Salario Pedro pós aumento: " + f1.Salario);
-            Console.WriteLine("Salario Paula pós aumento: " + f2.Salario);
-        }
-    }
-}
-*/
+    Console.WriteLine("Bonificação total: " + boni.TotalBonificacao);
+    f1.AumentarSalario();
+    f2.AumentarSalario();
+    Console.WriteLine("Salario Pedro pós aumento: " + f1.Salario);
+    Console.WriteLine("Salario Paula pós aumento: " + f2.Salario);
+}*/
 
 void CalcularBonificacao() {
     GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
@@ -56,4 +52,21 @@ void CalcularBonificacao() {
     Console.WriteLine("Total de Bonificações: " + gerenciador.TotalBonificacao);
 }
 
-CalcularBonificacao();
+void TestaSistemaInterno(){
+    SistemaInterno sis = new SistemaInterno();
+
+    Diretor diretor = new Diretor("123456");
+    diretor.Nome = "Ingride Novais";
+    diretor.Senha = "123";
+    diretor.Login = "ADJAKSD@gmail.com";
+
+    GerenteDeContas gerente = new GerenteDeContas("654321");
+    gerente.Nome = "Ursula Carvalho";
+    gerente.Senha = "321";
+    gerente.Login = "llwqq@gmail.com";
+
+    sis.Logar(diretor, "ADJAKSD@gmail.com", "123");
+    sis.Logar(gerente, "llwqq@gmail.com", "000");
+}
+
+TestaSistemaInterno();
