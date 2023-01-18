@@ -1,4 +1,4 @@
-﻿// using _05_ByteBank;
+﻿using ByteBank_exception.Exceptions;
 
 namespace ByteBank_exception {
     public class ContaCorrente {
@@ -21,7 +21,7 @@ namespace ByteBank_exception {
             }
         }
         public int Numero { get; }
-        private double _saldo = 100;
+        private double _saldo;
         public double Saldo {
             get {
                 return _saldo;
@@ -42,9 +42,9 @@ namespace ByteBank_exception {
                 throw new ArgumentException("Os argumentos agencia e numero devem ser maiores que 0");
             }
             else if(agencia <= 0) {
-                throw new ArgumentException("O argumento agencia deve ser maior que 0");
+                throw new ArgumentException("O argumento agencia deve ser maior que 0", nameof(agencia));
             } else if(numero <= 0) {
-                throw new ArgumentException("O argumento numero deve ser maior que 0");
+                throw new ArgumentException("O argumento numero deve ser maior que 0", nameof(numero));
             }
 
             Agencia = agencia;
@@ -55,14 +55,13 @@ namespace ByteBank_exception {
         }
 
         // Métodos
-        public bool Sacar(double valor) {
+        public void Sacar(double valor) {
             if (_saldo < valor)
             {
-                return false;
+                throw new SaldoInsuficienteException("Saldo insuficiente", this._saldo, valor);
             }
 
             _saldo -= valor;
-            return true;
         }
 
         public void Depositar(double valor) {
