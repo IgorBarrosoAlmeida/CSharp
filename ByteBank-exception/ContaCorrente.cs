@@ -4,13 +4,14 @@ namespace ByteBank_exception {
     public class ContaCorrente {
         // Atributos e propriedades
         public Cliente Titular { get; set; }
+        public static double TaxaOperacao { get; private set; }
         public static int TotalDeContasCriadas { get; private set; }
         private int _agencia;
         public int Agencia {
             get {
                 return _agencia;
             }
-            set {
+            private set {
                 if (value <= 0)
                 {
                     return;
@@ -19,7 +20,7 @@ namespace ByteBank_exception {
                 _agencia = value;
             }
         }
-        public int Numero { get; set; }
+        public int Numero { get; }
         private double _saldo = 100;
         public double Saldo {
             get {
@@ -37,10 +38,20 @@ namespace ByteBank_exception {
 
         // Construtores
         public ContaCorrente(int agencia, int numero) {
+            if(numero <= 0 && agencia <= 0) {
+                throw new ArgumentException("Os argumentos agencia e numero devem ser maiores que 0");
+            }
+            else if(agencia <= 0) {
+                throw new ArgumentException("O argumento agencia deve ser maior que 0");
+            } else if(numero <= 0) {
+                throw new ArgumentException("O argumento numero deve ser maior que 0");
+            }
+
             Agencia = agencia;
             Numero = numero;
-
+            
             TotalDeContasCriadas++;
+            TaxaOperacao = 30 /  TotalDeContasCriadas;
         }
 
         // Métodos
