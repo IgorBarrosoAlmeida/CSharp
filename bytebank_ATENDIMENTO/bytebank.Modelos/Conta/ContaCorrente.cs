@@ -10,7 +10,7 @@
 
 		public Cliente Titular { get; set; }
 
-		public string Nome_Agencia { get; set; }
+		public string Id { get; set; }
 
 		public int Numero_agencia
 		{
@@ -104,6 +104,13 @@
 			TotalDeContasCriadas++;
 		}
 
+        public ContaCorrente(int numero_agencia, string id)
+        {
+            this.Numero_agencia = numero_agencia;
+            this.Id = id;
+            this.Titular = new Cliente();
+        }
+
 		public override string ToString()
 		{
 
@@ -114,5 +121,4 @@
 				   $"Profissão do Titular: { this.Titular.Profissao}";
 		}
 	}
-
 }
