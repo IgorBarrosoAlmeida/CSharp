@@ -111,6 +111,14 @@
             this.Titular = new Cliente();
         }
 
+		public ContaCorrente(int numero_agencia, string id, double saldo)
+        {
+            this.Numero_agencia = numero_agencia;
+            this.Id = id;
+            this.Titular = new Cliente();
+			this.saldo = saldo;
+		}
+
 		public override string ToString()
 		{
 
