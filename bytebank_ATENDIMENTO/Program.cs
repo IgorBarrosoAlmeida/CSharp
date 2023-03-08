@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using bytebank_ATENDIMENTO.bytebank.util;
+using bytebank_ATENDIMENTO.bytebank.Exceptions;
 
 #region Exemplo 
 Console.WriteLine("Boas Vindas ao ByteBank, Atendimento.");
@@ -70,38 +71,55 @@ void TestaClasseArrayDeContas() {
 //TestaClasseArrayDeContas();
 #endregion
 
-
-ArrayList listaDeContas = new ArrayList();
+List<ContaCorrente> listaDeContas = new List<ContaCorrente>();
 void Atendimento() {
     char opcao = '0';
+    try {
+        while(opcao != '6') {
+            Console.Clear();
+            Console.WriteLine("===============================");
+            Console.WriteLine("===       Atendimento       ===");
+            Console.WriteLine("===1 - Cadastrar Conta      ===");
+            Console.WriteLine("===2 - Listar Contas        ===");
+            Console.WriteLine("===3 - Remover Conta        ===");
+            Console.WriteLine("===4 - Ordenar Contas       ===");
+            Console.WriteLine("===5 - Pesquisar Conta      ===");
+            Console.WriteLine("===6 - Sair do sistema      ===");
+            try {
+                opcao = Console.ReadLine()[0];
+            }
+            catch (Exception ex) {
+                throw new ByteBankException(ex.Message);
+            }
 
-    while(opcao != '6') {
-        Console.Clear();
-        Console.WriteLine("===============================");
-        Console.WriteLine("===       Atendimento       ===");
-        Console.WriteLine("===1 - Cadastrar Conta      ===");
-        Console.WriteLine("===2 - Listar Contas        ===");
-        Console.WriteLine("===3 - Remover Conta        ===");
-        Console.WriteLine("===4 - Ordenar Contas       ===");
-        Console.WriteLine("===5 - Pesquisar Conta      ===");
-        Console.WriteLine("===6 - Sair do sistema      ===");
-        opcao = Console.ReadLine()[0];
-        switch(opcao) {
-            case '1': 
-                CadastrarConta();
-                break;
-            case '2':
-            case '3':
-            case '4': 
-            case '5': 
-            case '6': break;
-            default: 
-                Console.WriteLine("Numero invalido");
-                break;
+            switch(opcao) {
+                case '1': 
+                    CadastrarConta();
+                    break;
+                case '2':
+                    ListarContas();
+                    break;
+                case '3':
+                    break;
+                case '4': 
+                    break;
+                case '5': 
+                    break;
+                case '6': 
+                    break;
+                default: 
+                    Console.WriteLine("Numero invalido");
+                    break;
+            }
         }
     }
+    catch(ByteBankException ex) {
+        Console.WriteLine($"{ex.Message}");
+    }
+
 }
 
+#region Funções
 void CadastrarConta() {
     Console.Clear();
     Console.WriteLine("===============================");
@@ -133,5 +151,34 @@ void CadastrarConta() {
     Console.WriteLine("... Conta cadastrada com sucesso! ...");
     Console.ReadKey();
 }
+
+void ListarContas()
+{
+    Console.Clear();
+    Console.WriteLine("===============================");
+    Console.WriteLine("===     LISTA DE CONTAS     ===");
+    Console.WriteLine("===============================");
+    Console.WriteLine("\n");
+    if (listaDeContas.Count <= 0)
+    {
+        Console.WriteLine("... Não há contas cadastradas! ...");
+        Console.ReadKey();
+        return;
+    }
+    foreach (ContaCorrente item in listaDeContas)
+    {
+        Console.WriteLine("===  Dados da Conta  ===");
+        Console.WriteLine("Número da Conta : " + item.Conta);
+        Console.WriteLine("Saldo da Conta : " + item.Saldo);
+        Console.WriteLine("Titular da Conta: " + item.Titular.Nome);
+        Console.WriteLine("CPF do Titular  : " + item.Titular.Cpf);
+        Console.WriteLine("Profissão do Titular: " + item.Titular.Profissao);
+        Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        Console.ReadKey();
+    }
+}
+
+
+#endregion
 
 Atendimento();
