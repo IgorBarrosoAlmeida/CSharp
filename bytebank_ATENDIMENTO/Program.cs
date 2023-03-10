@@ -100,10 +100,13 @@ void Atendimento() {
                     ListarContas();
                     break;
                 case '3':
+                    RemoverContas();
                     break;
                 case '4': 
+                    OrdenarContas();
                     break;
-                case '5': 
+                case '5':
+                    PesquisarContas();
                     break;
                 case '6': 
                     break;
@@ -178,7 +181,102 @@ void ListarContas()
     }
 }
 
+void RemoverContas()
+{
+    Console.Clear();
+    Console.WriteLine("===============================");
+    Console.WriteLine("===      REMOVER CONTAS     ===");
+    Console.WriteLine("===============================");
+    Console.WriteLine("\n");
+    Console.Write("Informe o número da Conta: ");
+    string numeroConta = Console.ReadLine();
+    ContaCorrente conta = null;
+    foreach (var item in listaDeContas)
+    {
+        if (item.Conta.Equals(numeroConta))
+        {
+            conta = item;
+        }
+    }
+    if (conta!=null)
+    {
+        listaDeContas.Remove(conta);
+        Console.WriteLine("... Conta removida da lista! ...");
+    }
+    else
+    {
+        Console.WriteLine(" ... Conta para remoção não encontrada ...");
+    }
+    Console.ReadKey();
+}
 
+void OrdenarContas() {
+    listaDeContas.Sort();
+    Console.WriteLine("... Lista de contas ordenada ...");
+    Console.ReadKey();
+}
+
+void PesquisarContas()
+{
+    Console.Clear();
+    Console.WriteLine("===============================");
+    Console.WriteLine("===    PESQUISAR CONTAS     ===");
+    Console.WriteLine("===============================");
+    Console.WriteLine("\n");
+    Console.Write("Deseja pesquisar por (1) NUMERO DA CONTA ou (2)CPF TITULAR ? ");
+    switch (int.Parse(Console.ReadLine()))
+    {
+        case 1:
+                {
+                    Console.Write("Informe o número da Conta: ");
+                    string _numeroConta = Console.ReadLine();
+                    ContaCorrente consultaConta = ConsultaPorNumeroConta(_numeroConta);
+                    Console.WriteLine(consultaConta.ToString());
+                    Console.ReadKey();
+                    break;
+                }
+        case 2:
+                {
+                    Console.Write("Informe o CPF do Titular: ");
+                    string _cpf = Console.ReadLine();
+                    ContaCorrente consultaCpf = ConsultaPorCPFTitular(_cpf);
+                    Console.WriteLine(consultaCpf.ToString());
+                    Console.ReadKey();
+                    break;
+                }
+        default:
+            Console.WriteLine("Opção não implementada.");
+            break;
+    }
+
+}
+
+ContaCorrente ConsultaPorCPFTitular(string? cpf)
+{
+    ContaCorrente conta = null;
+    for (int i = 0; i < listaDeContas.Count; i++)
+    {
+        if (listaDeContas[i].Titular.Cpf.Equals(cpf))
+        {
+            conta = listaDeContas[i];
+        }
+    }
+    return conta;
+}
+
+ContaCorrente ConsultaPorNumeroConta(string? numeroConta)
+{
+    ContaCorrente conta = null;
+    for (int i = 0; i < listaDeContas.Count; i++)
+    {
+        if (listaDeContas[i].Conta.Equals(numeroConta))
+        {
+            conta = listaDeContas[i];
+        }
+    }
+
+    return conta;
+}
 #endregion
 
 Atendimento();
