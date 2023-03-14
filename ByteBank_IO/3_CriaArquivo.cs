@@ -24,4 +24,19 @@ partial class Program {
             escritor.Write("456,65465,456.0,Pedro");
         }
     }
+
+    public static void TestaEscrita() {
+        var diretorioNovoArquivo = "teste.txt";
+
+        using(var fluxoDeArquivo = new FileStream(diretorioNovoArquivo, FileMode.Create))
+        using(var escritor = new StreamWriter(fluxoDeArquivo)) {
+            for(int i = 0; i < 10000; i++) {
+                escritor.WriteLine($"Linha {i}");
+                escritor.Flush();
+
+                System.Console.WriteLine($"Linha {i} foi escrita");
+                System.Console.ReadLine();
+            }
+        }
+    }
 }
